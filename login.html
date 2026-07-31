@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kamza Admin Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body class="bg-gray-100 font-[Poppins]">
+
+<div class="min-h-screen flex">
+
+    <!-- LEFT -->
+
+    <div class="hidden lg:flex lg:w-1/2 bg-green-600 text-white items-center justify-center">
+
+        <div class="text-center">
+
+            <h1 class="text-6xl font-bold mb-6">
+                Kamza
+            </h1>
+
+            <h2 class="text-3xl font-semibold mb-4">
+                Admin Dashboard
+            </h2>
+
+            <p class="text-lg opacity-90">
+                Manage products, orders,<br>
+                customers and sellers.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="w-full lg:w-1/2 flex items-center justify-center">
+
+        <div class="bg-white rounded-2xl shadow-xl p-10 w-full max-w-md">
+
+            <h2 class="text-3xl font-bold mb-2">
+
+                Welcome Back
+
+            </h2>
+
+            <p class="text-gray-500 mb-8">
+
+                Login to your admin account.
+
+            </p>
+
+            <form action="dashboard.html">
+
+                <div class="mb-5">
+
+                    <label class="block mb-2 font-medium">
+
+                        Email
+
+                    </label>
+
+                    <input
+                    type="email"
+                    placeholder="admin@kamza.ng"
+                    class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+                </div>
+
+                <div class="mb-6">
+
+                    <label class="block mb-2 font-medium">
+
+                        Password
+
+                    </label>
+
+                    <input
+                    type="password"
+                    placeholder="********"
+                    class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-500">
+
+                </div>
+
+                <button
+                class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-lg font-semibold transition">
+
+                    Login
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
