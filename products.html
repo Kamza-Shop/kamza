@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kamza — Product Details</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #111; font-family: Arial, Helvetica, sans-serif; }
+    .kamza-green { background:#009D3F; }
+    .green-text { color:#009D3F; }
+    .product-wrap { max-width: 928px; }
+    .thumb { width:52px; height:47px; object-fit:cover; border:1px solid #111; cursor:pointer; }
+    .thumb.active { border:2px solid #111; }
+    .main-image { width:372px; height:400px; object-fit:cover; }
+    .color-img { width:68px; height:64px; object-fit:cover; border:1px solid #222; }
+    .color-option { cursor:pointer; }
+    .color-option.selected .color-img { border:2px solid #009D3F; }
+    .size { min-width:36px; height:28px; border:1px solid #bbb; background:#fff; cursor:pointer; }
+    .size.selected { background:#009D3F; color:white; border-color:#009D3F; }
+    @media (max-width: 900px) {
+      .header-inner { padding-left:24px !important; padding-right:24px !important; }
+      .product-wrap { padding:0 24px; }
+      .product-grid { grid-template-columns: 1fr !important; }
+      .gallery-area { justify-content:center; }
+      .details { max-width:650px; margin:auto; }
+    }
+    @media (max-width: 600px) {
+      .header-search { display:none; }
+      .header-inner { height:70px !important; }
+      .product-wrap { padding:0 15px; }
+      .gallery-area { gap:10px !important; }
+      .main-image { width:calc(100vw - 100px); height:auto; max-height:420px; }
+      .thumb { width:60px; height:55px; }
+      .breadcrumb { overflow:hidden; white-space:nowrap; }
+      .details h1 { font-size:18px !important; }
+      .color-grid { flex-wrap:wrap; }
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+
+  <!-- Header -->
+  <header class="kamza-green text-white">
+    <div class="header-inner h-[79px] px-[104px] flex items-center gap-[88px]">
+      <a href="#" class="text-[36px] font-bold tracking-[-1.5px] shrink-0">Kamza</a>
+
+      <div class="header-search flex-1 max-w-[485px] h-[35px] rounded-full bg-white overflow-hidden flex items-center">
+        <input
+          id="search"
+          type="text"
+          placeholder="I want to buy"
+          class="flex-1 h-full px-9 text-[13px] text-gray-700 outline-none"
+        />
+        <button id="searchBtn" class="w-[50px] h-[30px] mr-[4px] rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800">
+          <i data-lucide="search" class="w-[18px]"></i>
+        </button>
+      </div>
+
+      <nav class="ml-auto flex items-center gap-[28px] text-[14px] whitespace-nowrap">
+        <a href="#" class="flex items-center gap-1.5 hover:opacity-80"><i data-lucide="circle-help" class="w-[17px]"></i>Help</a>
+        <a href="#" class="flex items-center gap-1.5 hover:opacity-80"><i data-lucide="user-round" class="w-[17px]"></i>Sign in / Register</a>
+        <a href="#" id="cartLink" class="flex items-center gap-1.5 hover:opacity-80"><i data-lucide="shopping-cart" class="w-[19px]"></i>Cart <span id="cartCount"></span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="product-wrap mx-auto pt-[17px]">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb text-[11px] text-[#666] flex items-center gap-2 mb-[13px]">
+      <a href="#" class="hover:text-[#009D3F]">Home</a>
+      <span>›</span>
+      <a href="#" class="hover:text-[#009D3F]">Footwears</a>
+      <span>›</span>
+      <span>2026 Model Unisex's Sneakers - Casual &amp; C...</span>
+    </div>
+
+    <div class="product-grid grid grid-cols-[445px_1fr] gap-[21px]">
+
+      <!-- Gallery -->
+      <section class="gallery-area flex gap-[16px]">
+        <div id="thumbs" class="w-[52px] flex flex-col gap-[12px]">
+          <img class="thumb active" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" alt="Black sneaker" data-image="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&q=90">
+          <img class="thumb" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=200&q=80" alt="Sneakers" data-image="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=900&q=90">
+          <img class="thumb" src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=200&q=80" alt="White sneaker" data-image="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=900&q=90">
+          <img class="thumb" src="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=200&q=80" alt="White shoe" data-image="https://images.unsplash.com/photo-1552346154-21d32810aba3?w=900&q=90">
+          <img class="thumb" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=200&q=80" alt="Brown sneaker" data-image="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&q=90">
+          <img class="thumb" src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=200&q=80" alt="Blue sneaker" data-image="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=900&q=90">
+          <img class="thumb" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80" alt="Red sneaker" data-image="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=900&q=90">
+        </div>
+
+        <div class="overflow-hidden">
+          <img id="mainImage" class="main-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&q=90" alt="2026 Model Unisex Sneakers">
+        </div>
+      </section>
+
+      <!-- Product details -->
+      <section class="details pt-[1px]">
+        <h1 class="text-[18px] leading-[22px] font-medium max-w-[470px]">
+          2026 Model Unisex Sneakers - Casual &amp; Comfortable Classic
+          Streetwear Shoe For Everyday Wear For Both Men &amp; Women
+        </h1>
+
+        <div class="mt-[13px] text-[13px] text-[#777]">
+          1k+ sold &nbsp;|&nbsp; sold by
+          <span class="font-bold green-text">Kamza</span>
+        </div>
+
+        <div class="mt-[16px] flex items-center gap-[10px]">
+          <span class="text-[25px] font-bold">₦ 7,000</span>
+          <del class="text-[17px] text-[#777]">₦15,000</del>
+          <span class="bg-[#E9F6EC] green-text text-[12px] font-bold px-2 py-1">-53%</span>
+        </div>
+
+        <div class="mt-[14px] flex items-center gap-2 pb-[11px] border-b border-[#D8D8D8]">
+          <span class="text-[#FFB000] text-[18px] tracking-[-2px]">★★★★★</span>
+          <a href="#reviews" class="text-[11px] text-blue-600">(57 verified ratings)</a>
+        </div>
+
+        <!-- Colors -->
+        <div class="mt-[14px]">
+          <h2 class="text-[12px] font-semibold mb-[8px]">Color</h2>
+
+          <div id="colorOptions" class="color-grid flex gap-[8px]">
+            <button class="color-option selected text-center" data-color="Black" data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&q=90">
+              <img class="color-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" alt="Black">
+              <span class="block text-[11px] mt-[7px]">Black</span>
+            </button>
+
+            <button class="color-option text-center" data-color="White" data-img="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=900&q=90">
+              <img class="color-img" src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?w=200&q=80" alt="White">
+              <span class="block text-[11px] mt-[7px]">White</span>
+            </button>
+
+            <button class="color-option text-center" data-color="Coffee Brown" data-img="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=900&q=90">
+              <img class="color-img" src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=200&q=80" alt="Coffee Brown">
+              <span class="block text-[11px] mt-[7px] leading-[13px]">Coffee<br>Brown</span>
+            </button>
+
+            <button class="color-option text-center" data-color="Blue" data-img="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=900&q=90">
+              <img class="color-img" src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=200&q=80" alt="Blue">
+              <span class="block text-[11px] mt-[7px]">Blue</span>
+            </button>
+
+            <button class="color-option text-center" data-color="Dark red" data-img="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=900&q=90">
+              <img class="color-img" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=200&q=80" alt="Dark red">
+              <span class="block text-[11px] mt-[7px]">Dark red</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sizes -->
+        <div class="mt-[25px]">
+          <h2 class="text-[12px] font-semibold mb-[8px]">Sizes</h2>
+          <div id="sizes" class="flex gap-[9px]">
+            <button class="size">36</button>
+            <button class="size">37</button>
+            <button class="size">38</button>
+            <button class="size">39</button>
+            <button class="size">40</button>
+            <button class="size">41</button>
+            <button class="size">42</button>
+          </div>
+        </div>
+
+        <button id="addCart" class="mt-[30px] w-full max-w-[370px] h-[39px] rounded-full kamza-green text-white font-semibold text-[12px] hover:bg-[#008D39] active:scale-[.99] transition">
+          Add to cart!
+        </button>
+
+        <p id="selectionMessage" class="text-[11px] text-[#777] mt-3 hidden"></p>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="fixed right-5 bottom-5 bg-black text-white px-5 py-3 rounded-lg text-sm shadow-xl opacity-0 translate-y-4 pointer-events-none transition-all">
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const mainImage = document.getElementById('mainImage');
+    const thumbs = document.querySelectorAll('.thumb');
+    const colors = document.querySelectorAll('.color-option');
+    const sizes = document.querySelectorAll('.size');
+    const toast = document.getElementById('toast');
+    let selectedColor = 'Black';
+    let selectedSize = null;
+    let cartCount = 0;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.remove('opacity-0', 'translate-y-4');
+      setTimeout(() => toast.classList.add('opacity-0', 'translate-y-4'), 2200);
+    }
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImage.src = thumb.dataset.image;
+      });
+    });
+
+    colors.forEach(color => {
+      color.addEventListener('click', () => {
+        colors.forEach(c => c.classList.remove('selected'));
+        color.classList.add('selected');
+        selectedColor = color.dataset.color;
+        mainImage.src = color.dataset.img;
+      });
+    });
+
+    sizes.forEach(size => {
+      size.addEventListener('click', () => {
+        sizes.forEach(s => s.classList.remove('selected'));
+        size.classList.add('selected');
+        selectedSize = size.textContent.trim();
+      });
+    });
+
+    document.getElementById('addCart').addEventListener('click', () => {
+      if (!selectedSize) {
+        showToast('Please select a size first.');
+        return;
+      }
+      cartCount++;
+      document.getElementById('cartCount').textContent = `(${cartCount})`;
+      showToast(`Added ${selectedColor}, size ${selectedSize} to cart!`);
+    });
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const value = document.getElementById('search').value.trim();
+      showToast(value ? `Searching for "${value}"` : 'What would you like to buy?');
+    });
+
+    document.getElementById('search').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('searchBtn').click();
+    });
+
+    document.getElementById('cartLink').addEventListener('click', e => {
+      e.preventDefault();
+      showToast(cartCount ? `${cartCount} item added to cart.` : 'Your cart is empty.');
+    });
+  </script>
+</body>
+</html>
