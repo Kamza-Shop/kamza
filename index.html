@@ -15,15 +15,100 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* Mobile-first fixes */
+  html { scroll-behavior: smooth; }
+  body { width: 100%; overflow-x: hidden; }
+  img { max-width: 100%; }
+
+  @media (max-width: 1023px) {
+    header .max-w-7xl { max-width: 100%; }
+  }
+
+  @media (max-width: 767px) {
+    .mobile-search-wrap { display: block !important; }
+    .mobile-search-wrap input { min-width: 0; }
+
+    .category-scroll {
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .category-scroll::-webkit-scrollbar { display: none; }
+
+    .product-grid {
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+    }
+
+    .product-grid img {
+      height: auto !important;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .pagination {
+      flex-wrap: wrap;
+    }
+
+    .newsletter-grid {
+      gap: 1.25rem !important;
+    }
+
+    .newsletter-form {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .newsletter-form input {
+      min-width: 0;
+      width: 100%;
+    }
+
+    .site-footer {
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+    }
+
+    .site-footer .grid {
+      gap: 2rem !important;
+    }
+
+    .contact-text {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    #scrollToTop {
+      right: 16px !important;
+      bottom: 16px !important;
+      width: 48px !important;
+      height: 48px !important;
+    }
+
+    #scrollToTop svg {
+      width: 21px !important;
+      height: 21px !important;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .mobile-search-wrap { display: none !important; }
+  }
+</style>
 </head>
 
-<body class="bg-gray-100 font-[Poppins]">
+<body class="bg-gray-100 font-[Poppins] overflow-x-hidden">
 
 <!-- ================= HEADER ================= -->
 
 <header class="bg-green-700 text-white shadow-lg sticky top-0 z-50">
 
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
         <div class="flex items-center justify-between h-20">
 
@@ -78,12 +163,37 @@
 
             <!-- Mobile -->
 
-            <button class="lg:hidden">
+            <button id="mobileMenuButton" type="button" aria-label="Open menu" class="lg:hidden p-2 rounded-md hover:bg-green-800">
 
-                <i data-lucide="menu"></i>
+                <i data-lucide="menu" class="w-6 h-6"></i>
 
             </button>
 
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="mobile-search-wrap hidden pb-4">
+            <div class="relative w-full">
+                <input
+                    type="text"
+                    placeholder="I want to buy..."
+                    class="w-full rounded-full py-3 pl-5 pr-12 text-gray-700 outline-none text-sm">
+                <button type="button" class="absolute right-1.5 top-1.5 bg-black text-white rounded-full p-2">
+                    <i data-lucide="search" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-green-600 pb-4">
+            <div class="grid grid-cols-1 gap-1 pt-2 text-sm font-medium">
+                <a href="#" class="px-4 py-3 rounded-md hover:bg-green-800">Help</a>
+                <a href="#" class="px-4 py-3 rounded-md hover:bg-green-800">Sign In / Register</a>
+                <a href="#" class="px-4 py-3 rounded-md hover:bg-green-800 flex items-center gap-2">
+                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    Cart
+                </a>
+            </div>
         </div>
 
     </div>
@@ -96,7 +206,7 @@
 
     <!-- Categories -->
 
-    <div class="flex items-center gap-10 text-sm font-medium mb-6 overflow-x-auto whitespace-nowrap">
+    <div class="category-scroll flex items-center gap-6 sm:gap-10 text-sm font-medium mb-6 overflow-x-auto whitespace-nowrap">
 
         <a href="#" class="hover:text-green-600">Home & Kitchen</a>
         <a href="#" class="hover:text-green-600">Beauty & Health</a>
@@ -119,7 +229,7 @@
 
     <!-- Product Grid -->
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
+    <div class="product-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
 
         <!-- PRODUCT 1 -->
 
@@ -127,7 +237,7 @@
 
             <div class="relative">
 
-                <img src="media/pro1.jpeg" class="w-full h-64 object-cover">
+                <img src="assets/pro1.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -159,7 +269,7 @@
 
             <div class="relative">
 
-                <img src="media/pro2.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro2.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -191,7 +301,7 @@
 
             <div class="relative">
 
-                <img src="media/pro3.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro3.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -223,7 +333,7 @@
 
             <div class="relative">
 
-                <img src="media/pro4.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro4.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -255,7 +365,7 @@
 
             <div class="relative">
 
-                <img src="media/pro5.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro5.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -287,7 +397,7 @@
 
             <div class="relative">
 
-                <img src="media/pro6.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro6.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -319,7 +429,7 @@
 
             <div class="relative">
 
-                <img src="media/pro7.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro7.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -351,7 +461,7 @@
 
             <div class="relative">
 
-                <img src="media/pro8.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro8.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -383,7 +493,7 @@
 
             <div class="relative">
 
-                <img src="media/pro9.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro9.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -415,7 +525,7 @@
 
             <div class="relative">
 
-                <img src="media/pro10.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro10.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -447,7 +557,7 @@
 
             <div class="relative">
 
-                <img src="media/pro11.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro11.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -479,7 +589,7 @@
 
             <div class="relative">
 
-                <img src="media/pro12.jpeg" class="w-full h-64 object-cover">
+                <img src="media/pro12.jpeg" class="w-full h-auto aspect-square object-cover">
 
                 <button class="absolute top-3 right-3 w-9 h-9 rounded-full bg-white shadow flex items-center justify-center">
                     🛒
@@ -513,7 +623,7 @@
 
 <section class="max-w-7xl mx-auto px-6 pb-12">
 
-    <div class="flex justify-center gap-3">
+    <div class="pagination flex justify-center gap-3">
 
         <button class="w-10 h-10 bg-green-700 text-white rounded">
             1
@@ -541,7 +651,7 @@
 
     <div class="max-w-7xl mx-auto px-10 py-4">
 
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
+        <div class="newsletter-grid grid grid-cols-1 md:grid-cols-4 gap-6 items-center">
 
             <!-- EMAIL -->
 
@@ -559,7 +669,7 @@
                         Email
                     </h4>
 
-                    <p class="text-gray-300 text-sm">
+                    <p class="contact-text text-gray-300 text-sm">
                         kamzashopping@gmail.com
                     </p>
 
@@ -583,7 +693,7 @@
                         Phone
                     </h4>
 
-                    <p class="text-gray-300 text-sm">
+                    <p class="contact-text text-gray-300 text-sm">
                         08141986006, 08107468830
                     </p>
 
@@ -607,7 +717,7 @@
 
             <!-- SUBSCRIBE -->
 
-            <form class="flex">
+            <form class="newsletter-form flex w-full">
 
                 <input
                     type="email"
@@ -629,7 +739,7 @@
 
 </div>
 
-<footer class="bg-black text-white">
+<footer class="site-footer bg-black text-white">
 
     <div class="max-w-7xl mx-auto px-10 py-16">
 
@@ -767,6 +877,7 @@
     <!-- Back To Top -->
     <div class="fixed right-6 bottom-6 z-[9999]">
         <button
+            id="scrollToTop"
             type="button"
             aria-label="Scroll to top"
             onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
@@ -775,7 +886,31 @@
         </button>
     </div>
 
-<footer class="relative bg-black text-white">
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.lucide) lucide.createIcons();
+
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenu.classList.contains('hidden') ? 'menu' : 'x';
+                mobileMenuButton.innerHTML = '<i data-lucide="' + icon + '" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            });
+        }
+
+        const scrollButton = document.getElementById('scrollToTop');
+        if (scrollButton) {
+            scrollButton.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    });
+</script>
 
 </body>
 </html> 
